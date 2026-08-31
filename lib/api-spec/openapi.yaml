@@ -1,0 +1,480 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API for Nexus Gestão de Aparelhos
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: dashboard
+  - name: products
+  - name: sales
+  - name: customers
+  - name: suppliers
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /dashboard:
+    get:
+      operationId: getDashboard
+      tags: [dashboard]
+      summary: Dashboard summary
+      responses:
+        "200":
+          description: Dashboard metrics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+  /products:
+    get:
+      operationId: listProducts
+      tags: [products]
+      summary: List products
+      responses:
+        "200":
+          description: Product list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+    post:
+      operationId: createProduct
+      tags: [products]
+      summary: Create product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "201":
+          description: Created product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+  /products/{id}:
+    get:
+      operationId: getProduct
+      tags: [products]
+      summary: Get product details
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      operationId: updateProduct
+      tags: [products]
+      summary: Update product
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductUpdate"
+      responses:
+        "200":
+          description: Updated product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+    delete:
+      operationId: deleteProduct
+      tags: [products]
+      summary: Delete product
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "204":
+          description: Deleted
+  /products/{id}/costs:
+    post:
+      operationId: addProductCost
+      tags: [products]
+      summary: Add an additional cost
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CostInput"
+      responses:
+        "201":
+          description: Created cost
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cost"
+  /products/{id}/costs/{costId}:
+    patch:
+      operationId: updateProductCost
+      tags: [products]
+      summary: Update an additional cost
+      parameters:
+        - $ref: "#/components/parameters/Id"
+        - name: costId
+          in: path
+          required: true
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CostInput"
+      responses:
+        "200":
+          description: Updated cost
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cost"
+    delete:
+      operationId: deleteProductCost
+      tags: [products]
+      summary: Delete an additional cost
+      parameters:
+        - $ref: "#/components/parameters/Id"
+        - name: costId
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        "204":
+          description: Deleted
+  /sales:
+    get:
+      operationId: listSales
+      tags: [sales]
+      summary: List sales
+      responses:
+        "200":
+          description: Sales list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Sale"
+    post:
+      operationId: createSale
+      tags: [sales]
+      summary: Register a sale
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaleInput"
+      responses:
+        "201":
+          description: Created sale
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sale"
+  /customers:
+    get:
+      operationId: listCustomers
+      tags: [customers]
+      summary: List customers
+      responses:
+        "200":
+          description: Customer list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+    post:
+      operationId: createCustomer
+      tags: [customers]
+      summary: Create customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerInput"
+      responses:
+        "201":
+          description: Created customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /suppliers:
+    get:
+      operationId: listSuppliers
+      tags: [suppliers]
+      summary: List suppliers
+      responses:
+        "200":
+          description: Supplier list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Supplier"
+    post:
+      operationId: createSupplier
+      tags: [suppliers]
+      summary: Create supplier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SupplierInput"
+      responses:
+        "201":
+          description: Created supplier
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Supplier"
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: number
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string }
+    Product:
+      type: object
+      required: [id, brand, model, status, purchaseValue, additionalCosts, totalCost, daysInStock, purchasedAt]
+      properties:
+        id: { type: number }
+        brand: { type: string }
+        model: { type: string }
+        category: { type: string }
+        color: { type: string }
+        storage: { type: string }
+        imei: { type: string }
+        serialNumber: { type: string }
+        condition: { type: string }
+        supplier: { type: string }
+        supplierPhone: { type: string }
+        purchaseValue: { type: number }
+        additionalCosts: { type: number }
+        totalCost: { type: number }
+        status: { type: string }
+        daysInStock: { type: number }
+        purchasedAt: { type: string }
+        imageUrl: { type: ["string", "null"] }
+        notes: { type: ["string", "null"] }
+        costs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Cost"
+    ProductInput:
+      type: object
+      required: [brand, model, purchaseValue]
+      properties:
+        brand: { type: string }
+        model: { type: string }
+        category: { type: string }
+        color: { type: string }
+        storage: { type: string }
+        imei: { type: string }
+        serialNumber: { type: string }
+        condition: { type: string }
+        supplier: { type: string }
+        supplierPhone: { type: string }
+        purchaseValue: { type: number }
+        purchasedAt: { type: string }
+        imageUrl: { type: string }
+        notes: { type: string }
+    ProductUpdate:
+      type: object
+      properties:
+        brand: { type: string }
+        model: { type: string }
+        category: { type: string }
+        color: { type: string }
+        storage: { type: string }
+        imei: { type: string }
+        serialNumber: { type: string }
+        status: { type: string }
+        purchaseValue: { type: number }
+        imageUrl: { type: string }
+        notes: { type: string }
+    Cost:
+      type: object
+      required: [id, productId, category, description, amount, date]
+      properties:
+        id: { type: number }
+        productId: { type: number }
+        category: { type: string }
+        description: { type: string }
+        amount: { type: number }
+        date: { type: string }
+        notes: { type: ["string", "null"] }
+    CostInput:
+      type: object
+      required: [category, description, amount]
+      properties:
+        category: { type: string }
+        description: { type: string }
+        amount: { type: number }
+        date: { type: string }
+        notes: { type: string }
+    Sale:
+      type: object
+      required: [id, productId, customerName, saleValue, netProfit, soldAt, paymentMethod]
+      properties:
+        id: { type: number }
+        productId: { type: number }
+        productName: { type: string }
+        customerName: { type: string }
+        phone: { type: string }
+        saleValue: { type: number }
+        paymentMethod: { type: string }
+        installments: { type: number }
+        machineFee: { type: number }
+        commission: { type: number }
+        otherCosts: { type: number }
+        netProfit: { type: number }
+        soldAt: { type: string }
+        notes: { type: ["string", "null"] }
+    SaleInput:
+      type: object
+      required: [productId, customerName, saleValue, paymentMethod]
+      properties:
+        productId: { type: number }
+        customerName: { type: string }
+        phone: { type: string }
+        saleValue: { type: number }
+        paymentMethod: { type: string }
+        installments: { type: number }
+        machineFee: { type: number }
+        commission: { type: number }
+        otherCosts: { type: number }
+        soldAt: { type: string }
+        notes: { type: string }
+    Customer:
+      type: object
+      required: [id, name, phone, purchasesCount, totalSpent]
+      properties:
+        id: { type: number }
+        name: { type: string }
+        phone: { type: string }
+        cpf: { type: ["string", "null"] }
+        email: { type: ["string", "null"] }
+        notes: { type: ["string", "null"] }
+        purchasesCount: { type: number }
+        totalSpent: { type: number }
+    CustomerInput:
+      type: object
+      required: [name, phone]
+      properties:
+        name: { type: string }
+        phone: { type: string }
+        cpf: { type: string }
+        email: { type: string }
+        notes: { type: string }
+    Supplier:
+      type: object
+      required: [id, name, phone, productsCount, totalPurchased, averageCost]
+      properties:
+        id: { type: number }
+        name: { type: string }
+        phone: { type: string }
+        productsCount: { type: number }
+        totalPurchased: { type: number }
+        averageCost: { type: number }
+    SupplierInput:
+      type: object
+      required: [name, phone]
+      properties:
+        name: { type: string }
+        phone: { type: string }
+    Dashboard:
+      type: object
+      required: [totalInvested, totalSold, grossProfit, netProfit, additionalCosts, stockCount, soldCount, stockValue, averageTicket, capitalTrapped, monthlySales, monthlyProfit, recentProducts]
+      properties:
+        totalInvested: { type: number }
+        totalSold: { type: number }
+        grossProfit: { type: number }
+        netProfit: { type: number }
+        additionalCosts: { type: number }
+        stockCount: { type: number }
+        soldCount: { type: number }
+        stockValue: { type: number }
+        averageTicket: { type: number }
+        capitalTrapped: { type: number }
+        monthlySales:
+          type: array
+          items:
+            $ref: "#/components/schemas/MonthlyMetric"
+        monthlyProfit:
+          type: array
+          items:
+            $ref: "#/components/schemas/MonthlyMetric"
+        recentProducts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Product"
+    MonthlyMetric:
+      type: object
+      required: [label, value]
+      properties:
+        label: { type: string }
+        value: { type: number }
+
