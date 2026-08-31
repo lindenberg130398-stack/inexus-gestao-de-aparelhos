@@ -1,0 +1,543 @@
+Crie um sistema web completo chamado:
+
+# NEXUS • GESTÃO DE APARELHOS
+
+O sistema será utilizado para controlar compra, estoque, custos adicionais, vendas, lucro e gestão financeira de aparelhos eletrônicos, principalmente smartphones.
+
+Quero um sistema profissional, moderno, rápido, responsivo e preparado para futuramente ser comercializado como um software SaaS.
+
+## IDENTIDADE VISUAL
+
+Utilize a identidade:
+
+**Nome:** Nexus Aparelhos
+
+Visual premium e tecnológico.
+
+Cores principais:
+
+* Laranja como cor de destaque
+* Preto
+* Grafite
+* Branco
+
+O dashboard deve ter fundo escuro, com:
+
+* Botões em laranja
+* Ícones em laranja
+* Cards modernos
+* Bordas discretas
+* Animações suaves
+* Menu lateral
+* Boa visualização em computador e celular
+
+O laranja deve ser utilizado principalmente nos botões, gráficos, valores importantes, menu selecionado e indicadores.
+
+Não deixe o sistema inteiro laranja. Quero contraste elegante entre preto/grafite e laranja.
+
+---
+
+# MENU LATERAL
+
+Criar as seguintes opções:
+
+* Dashboard
+* Estoque
+* Vendas
+* Financeiro
+* Clientes
+* Fornecedores
+* Relatórios
+* Gerência
+* Configurações
+
+Não quero uma aba chamada **COMPRAR**.
+
+O produto deve ser cadastrado diretamente através do **Estoque / Novo Produto**.
+
+---
+
+# DASHBOARD
+
+Criar um dashboard visual e moderno mostrando:
+
+* Total investido
+* Total vendido
+* Lucro bruto
+* Lucro líquido
+* Total de custos adicionais
+* Quantidade de aparelhos no estoque
+* Quantidade de aparelhos vendidos
+* Valor total do estoque
+* Ticket médio das vendas
+* Capital parado no estoque
+
+Criar gráficos:
+
+* Vendas por mês
+* Lucro por mês
+* Compras x vendas
+* Gastos por mês
+* Produtos mais vendidos
+
+Adicionar filtros:
+
+* Hoje
+* Semana
+* Mês
+* Ano
+* Período personalizado
+
+Todos os dados devem ser atualizados automaticamente.
+
+---
+
+# CADASTRO DE PRODUTO
+
+Adicionar botão:
+
+**+ NOVO PRODUTO**
+
+Campos:
+
+* Data da compra
+* Categoria
+* Marca
+* Modelo
+* Cor
+* Armazenamento
+* IMEI
+* Número de série
+* Estado do aparelho
+* Fornecedor
+* Telefone do fornecedor
+* Valor pago
+* Forma de pagamento
+* Observações
+
+O produto deve entrar automaticamente no estoque após o cadastro.
+
+---
+
+# FOTO DO APARELHO
+
+No cadastro do produto, permitir adicionar uma ou várias fotos.
+
+Também deve ser possível adicionar fotos posteriormente.
+
+Permitir:
+
+* Adicionar foto
+* Alterar foto
+* Excluir foto
+* Visualizar foto
+* Mostrar miniatura no estoque
+
+As fotos devem permanecer salvas e vinculadas ao aparelho correto.
+
+---
+
+# CUSTOS ADICIONAIS
+
+Cada produto precisa ter uma área chamada:
+
+**CUSTOS ADICIONAIS**
+
+Esses custos podem ser cadastrados:
+
+* Durante o cadastro do aparelho
+* Depois que o aparelho já estiver no estoque
+
+Exemplos:
+
+* Cabo
+* Carregador
+* Caixa
+* Capinha
+* Película
+* Tela
+* Bateria
+* Manutenção
+* Transporte
+* Frete
+* Taxas
+* Comissão
+* Outros
+
+Criar botão:
+
+**+ ADICIONAR CUSTO**
+
+Campos:
+
+* Categoria
+* Descrição
+* Valor
+* Data
+* Observação
+
+Permitir:
+
+* Adicionar custo
+* Editar custo
+* Excluir custo
+
+Sempre que um custo for adicionado, editado ou excluído, recalcular automaticamente.
+
+Exemplo:
+
+Valor do aparelho: R$ 2.000,00
+
+Carregador: R$ 100,00
+Cabo: R$ 50,00
+Caixa: R$ 50,00
+
+Resultado:
+
+**Valor de compra: R$ 2.000,00**
+
+**Custos adicionais: R$ 200,00**
+
+**Custo total: R$ 2.200,00**
+
+A fórmula deve ser:
+
+**Valor de compra + custos adicionais = custo total do produto**
+
+Esse custo total será utilizado para calcular o lucro quando o aparelho for vendido.
+
+---
+
+# ESTOQUE
+
+Mostrar todos os produtos cadastrados.
+
+Criar visual moderno com foto do aparelho.
+
+Mostrar:
+
+* Foto
+* Modelo
+* Cor
+* Armazenamento
+* IMEI
+* Valor de compra
+* Custos adicionais
+* Custo total
+* Status
+* Dias no estoque
+
+Status possíveis:
+
+* Disponível
+* Em manutenção
+* Reservado
+* Vendido
+
+Permitir:
+
+* Visualizar
+* Editar
+* Excluir
+* Adicionar custo
+* Registrar venda
+
+Criar pesquisa por:
+
+* Modelo
+* Marca
+* IMEI
+* Cor
+* Status
+
+Adicionar filtros rápidos.
+
+---
+
+# FICHA DO APARELHO
+
+Cada aparelho deve possuir uma página própria.
+
+Mostrar:
+
+* Fotos
+* Marca
+* Modelo
+* Cor
+* Armazenamento
+* IMEI
+* Número de série
+* Data da compra
+* Fornecedor
+* Valor de compra
+* Custos adicionais
+* Custo total
+* Status
+
+Mostrar também todos os custos adicionais cadastrados.
+
+Criar histórico:
+
+**Cadastrado → Em estoque → Custos adicionados → Reservado → Vendido**
+
+Se estiver vendido, mostrar:
+
+* Cliente
+* Data da venda
+* Valor vendido
+* Forma de pagamento
+* Taxas
+* Lucro
+
+---
+
+# VENDAS
+
+Adicionar botão:
+
+**+ NOVA VENDA**
+
+Ao clicar, selecionar um aparelho disponível no estoque.
+
+Campos:
+
+* Aparelho
+* Cliente
+* Telefone
+* Data da venda
+* Valor da venda
+* Forma de pagamento
+* Quantidade de parcelas
+* Taxa da maquininha
+* Comissão
+* Outros custos
+* Observações
+
+Calcular automaticamente:
+
+**Valor da venda - custo total do produto - taxas - comissão - outros custos = lucro líquido**
+
+Exemplo:
+
+Venda: R$ 3.000,00
+Custo total: R$ 2.200,00
+Taxas: R$ 100,00
+
+Lucro líquido:
+
+**R$ 700,00**
+
+Após concluir a venda:
+
+* Alterar o produto automaticamente para **VENDIDO**
+* Retirar dos produtos disponíveis
+* Atualizar o dashboard
+* Atualizar o financeiro
+* Atualizar os relatórios
+
+---
+
+# CLIENTES
+
+Criar cadastro de clientes.
+
+Campos:
+
+* Nome
+* Telefone
+* CPF opcional
+* E-mail
+* Observações
+
+Na ficha do cliente mostrar:
+
+* Produtos comprados
+* Datas
+* Valores
+* Quantidade de compras
+* Total gasto
+
+---
+
+# FORNECEDORES
+
+Cadastrar fornecedores.
+
+Mostrar:
+
+* Nome
+* Telefone
+* Produtos comprados
+* Quantidade de aparelhos
+* Valor total comprado
+* Média de custo
+* Histórico
+
+---
+
+# FINANCEIRO
+
+Criar painel financeiro mostrando:
+
+* Total investido
+* Total recebido
+* Lucro bruto
+* Lucro líquido
+* Gastos adicionais
+* Taxas
+* Comissões
+* Valor do estoque
+* Capital parado
+
+Permitir filtros por período.
+
+---
+
+# GERÊNCIA
+
+Criar uma área administrativa completa.
+
+Mostrar:
+
+* Produto com maior lucro
+* Produto com menor lucro
+* Produtos parados no estoque
+* Média de dias para vender
+* Margem média de lucro
+* Capital investido
+* Capital recuperado
+* Capital ainda no estoque
+
+Criar alertas como:
+
+**Produto há mais de 30 dias no estoque**
+
+**Margem de lucro baixa**
+
+**Produto com custo adicional elevado**
+
+---
+
+# RELATÓRIOS
+
+Criar relatórios:
+
+* Estoque
+* Vendas
+* Produtos
+* Lucros
+* Custos
+* Clientes
+* Fornecedores
+
+Permitir exportação para:
+
+* Excel
+* PDF
+
+---
+
+# SALVAMENTO DOS DADOS
+
+IMPORTANTE:
+
+Todos os dados precisam ser realmente salvos.
+
+Não quero que as informações desapareçam quando atualizar a página ou fechar o navegador.
+
+Utilize banco de dados adequado.
+
+Salvar corretamente:
+
+* Produtos
+* Fotos
+* Custos adicionais
+* Clientes
+* Fornecedores
+* Vendas
+* Financeiro
+* Histórico
+
+Ao cadastrar alguma informação, mostrar mensagem:
+
+**Salvo com sucesso**
+
+---
+
+# EDIÇÃO
+
+Tudo que for cadastrado precisa possuir possibilidade de edição.
+
+Permitir editar:
+
+* Produto
+* Valor de compra
+* Informações do aparelho
+* Custos adicionais
+* Fotos
+* Cliente
+* Fornecedor
+* Venda
+* Observações
+
+Após qualquer alteração, atualizar automaticamente todos os cálculos relacionados.
+
+---
+
+# PREPARAÇÃO PARA FUTURA VENDA DO SISTEMA
+
+Quero que o projeto seja desenvolvido pensando que futuramente poderá ser comercializado para outras lojas.
+
+Deixar estrutura preparada para:
+
+* Login
+* Senha
+* Recuperação de senha
+* Cadastro de empresas
+* Vários usuários
+* Cada empresa visualizar somente seus próprios dados
+* Administrador
+* Funcionários
+* Permissões de acesso
+* Planos de assinatura
+* Pagamento mensal
+* Personalização com logo da empresa
+* Backup de dados
+
+Não precisa implementar tudo agora, mas deixe a estrutura organizada para permitir essas funções futuramente.
+
+---
+
+# EXPERIÊNCIA DO USUÁRIO
+
+Quero que utilizar o sistema seja extremamente simples.
+
+Fluxo ideal:
+
+**Cadastrar aparelho → adicionar foto → adicionar custos → colocar no estoque → registrar venda → sistema calcular lucro automaticamente**
+
+Criar botões modernos como:
+
+**+ Novo Produto**
+
+**+ Adicionar Custo**
+
+**Editar**
+
+**Excluir**
+
+**Registrar Venda**
+
+**Ver Produto**
+
+**+ Novo Cliente**
+
+**Gerar Relatório**
+
+Utilizar ícones modernos e animações suaves ao clicar e passar o mouse.
+
+Priorize facilidade, velocidade e aparência profissional.
+
+O sistema deve parecer um **software empresarial pronto para comercialização**, e não apenas uma página HTML simples.
+
+Utilize boas práticas de programação, componentes organizados e estrutura que facilite futuras alterações sem precisar reconstruir todo o sistema.
