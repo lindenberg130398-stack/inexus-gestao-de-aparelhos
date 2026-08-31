@@ -1,1 +1,0 @@
-- [OpenAPI integer compatibility](openapi-integer-compatibility.md) — Use numeric schema types because generated integer validation is incompatible with this workspace's Zod runtime.
