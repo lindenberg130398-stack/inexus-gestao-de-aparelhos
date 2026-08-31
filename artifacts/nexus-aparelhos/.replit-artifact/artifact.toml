@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "iNexus"
+description = "Sistema SaaS de gestão para lojas de aparelhos eletrônicos, com estoque, custos adicionais, vendas, clientes, fornecedores, financeiro, relatórios e indicadores de lucro."
+version = "1.0.0"
+id = "artifacts/nexus-aparelhos"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22145
+
+[services.development]
+run = "pnpm --filter @workspace/nexus-aparelhos run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nexus-aparelhos", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/nexus-aparelhos/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22145"
+BASE_PATH = "/"
